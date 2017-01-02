@@ -13,6 +13,4 @@ urlpatterns = patterns('',
     url(r'^$', index),
     #url(r'', 'chatbot.views.index'),
     url(r'^facebook_auth/?$', MyChatBotView.as_view()),
-
-
 )

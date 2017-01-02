@@ -12,16 +12,14 @@ import json
 import requests
 import re
 
-# Create your views here.
-
 VERIFY_TOKEN = '7thseptember2016'
 PAGE_ACCESS_TOKEN = 'EAAWSz5ubdJ4BAJMGZAUrV01OaDdZA2GkYZBhKToKvvNFK7GDvcI6efhZCsqaP2ZCiPRbjFFZBbbXrcYnuqbvFCM8tQZCIk4jvvCBwixXlDXCjPoJOw8WxgbgthuUzQvI8VscZC6WO8DE2sUZAGIW6XuQZCq6ZAlJdEumOmktNP0i6MrEwZDZD'
 
 def wikisearch(title='tomato'):
     url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=%s'%(title)
-    resp = requests.get(url=url).text
-    data = json.loads(resp)
-    scoped_data = data['query']['pages']
+    resp = requests.get(url=url).text  		#puts data provided by API in text
+    data = json.loads(resp)					#data becomes a json object
+    scoped_data = data['query']['pages']	#wikipedia API is structured as 
     print scoped_data
     page_id = data['query']['pages'].keys()[0]
     wiki_url = 'https://en.m.wikipedia.org/?curid=%s'%(page_id)
@@ -32,6 +30,7 @@ def wikisearch(title='tomato'):
         
         if len(wiki_content) > 315:
             wiki_content = wiki_content[:315] + ' ...'
+    
     except KeyError:
         wiki_content = ''
 
